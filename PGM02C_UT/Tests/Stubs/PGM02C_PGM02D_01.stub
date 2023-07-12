@@ -1,0 +1,34 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<stub:stub xmlns:listructure="http://www.compuware.com/model/xml/listructure" xmlns:properties="http://www.compuware.com/model/xml/properties" xmlns:stub="http://www.compuware.com/model/xml/stub" alias="" encoding="1047" id="Tests/Stubs/PGM02C_PGM02D_01.stub" stubtype="Program" target="PGM02D" token="20000">
+  <properties:properties>
+    <properties:property name="programtype" type="string">ProgramStubAssertion</properties:property>
+  </properties:properties>
+  <stub:description>Created: 12 Jul, 2023 10:00:43 AM</stub:description>
+  <stub:stubdata id="0" name="PGM02D">
+    <stub:interface>../Interfaces/PGM02C_PGM02D.interface#Tests/Interfaces/PGM02C_PGM02D.interface</stub:interface>
+    <stub:inputinterface>../Interfaces/PGM02C_PGM02D.interface#Tests/Interfaces/PGM02C_PGM02D.interface</stub:inputinterface>
+    <stub:input listructure="../Structures/PGM02C_PGM02D_WS-VARS.listructure#Tests/Structures/PGM02C_PGM02D_WS-VARS.listructure">
+      <stub:data baseType="listructure:structType ../Structures/PGM02C_PGM02D_WS-VARS.listructure#WS_VARS" id="arg0.WS_VARS">
+        <properties:properties>
+          <properties:property name="value" type="string">F3F0F6F0F1F0F040</properties:property>
+          <properties:property name="address" type="string">200DD270</properties:property>
+        </properties:properties>
+      </stub:data>
+    </stub:input>
+    <stub:output listructure="../Structures/PGM02C_PGM02D_WS-VARS.listructure#Tests/Structures/PGM02C_PGM02D_WS-VARS.listructure">
+      <stub:data baseType="listructure:structType ../Structures/PGM02C_PGM02D_WS-VARS.listructure#WS_VARS" id="arg0.WS_VARS">
+        <properties:properties>
+          <properties:property name="value" type="string">F3F0F6F0F1F0F0D5</properties:property>
+          <properties:property name="address" type="string">200DD270</properties:property>
+        </properties:properties>
+      </stub:data>
+    </stub:output>
+    <stub:returncode listructure="../Structures/PGM02C_PGM02D_RETURN-CODE.listructure#Tests/Structures/PGM02C_PGM02D_RETURN-CODE.listructure">
+      <stub:data baseType="listructure:structType ../Structures/PGM02C_PGM02D_RETURN-CODE.listructure#RETURN_CODE" id="arg0.RETURN_CODE">
+        <properties:properties>
+          <properties:property name="value" type="string">0000</properties:property>
+        </properties:properties>
+      </stub:data>
+    </stub:returncode>
+  </stub:stubdata>
+</stub:stub>
