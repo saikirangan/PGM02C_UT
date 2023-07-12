@@ -1,0 +1,9 @@
+name: workflow_02
+on: [repository_dispatch]
+jobs:
+  cypress-run:
+    runs-on: self-hosted
+    steps:
+      - run: echo "Triggering Wokflow 2"
+      - name: Checkout
+        uses: actions/checkout@v2
