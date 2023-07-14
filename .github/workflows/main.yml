@@ -5,7 +5,7 @@ on:
 jobs:
   build:
     name: run-workflow
-    runs-on: selfhost-runned 
+    runs-on: any
     steps:
     - uses: actions/checkout@v2
       with:
