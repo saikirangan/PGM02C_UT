@@ -1,9 +1,12 @@
-name: run the workflow
-on:
-  repository_dispatch:
-    types: [my event]
-    
 # This is a basic workflow to help you get started with Actions for cli
+name: Topaz for Total Test
+
+# Controls when the workflow will run
+on:
+  push:
+    branches:
+      - master  
+# Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
       clipath:
@@ -14,7 +17,7 @@ on:
       hciconnection:
         # Host/IP adress input from users
         description: HCI Connection
-        default: 10.10.1.172
+        default: "10.10.1.172"
         required: true
       port:
         # passticket input from the user.
@@ -24,12 +27,17 @@ on:
       testFolderPath:
         # passticket input from the user.
         description: Test Location Path
-        default: C:\Topaz\WorkbenchCLI\git\PGM02C\PGM02C\Tests
+        default: C:\Topaz\WorkbenchCLI\git\PGM02C_UT\PGM02C_UT\Tests\Scenarios
+        required: true
+      testScenario:
+        # Test Scenario name
+        description: Test Scenario Name
+        default: "PGM02C_Scenario.testscenario"
         required: true
       jclFile:
         # JCL File Name
         description: JCL File Name
-        default: C:\Topaz\WorkbenchCLI\LUNCHCX\LAUNCHCX\Tests\JCL\Runner.jcl
+        default: C:\Topaz\WorkbenchCLI\git\PGM02C_UT\PGM02C_UT\Tests\JCL\Runner.jcl
         required: true
       workspace:
         # Workspcae location of the customer input from the user.
@@ -39,22 +47,12 @@ on:
       repository_server:
         # repository server input from the user.
         description: Repository Server
-        default: http://10.10.1.174:48226/totaltestapi/
-        required: true
-      environment_id:
-       # envitonment id 
-         description: environment id
-         default: 10.10.1.172
-         required: true
-      server_details:
-          #serverurl path
-        description: server rul details
-        default: http://10.10.1.174:48226/
-        required: true
+        default: "http://10.10.1.174:48226/"
+        required: false
       userId:
         # repository server input from the user.
         description: HCI User ID
-        default: ADCDS
+        default: "ADCDS"
         required: true
         
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -64,12 +62,12 @@ jobs:
     # The type of runner that the job will run on
     runs-on: self-hosted
     env:
-     HCI_PASSWORD: ${{ secrets.PGM02C_UT }}
+     HCI_PASSWORD: ${{ secrets.HCI_PASSWORD }}
     #runs-on: windows-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - run: git config --global core.longpaths true     
       # Runs a single command using the runners shell
-      - run: echo "${{ secrets.PGM02C_UT }}"
+      - run: echo "${{ secrets.HCI_PASSWORD }}"
       - name: Calling the CLI function
-        run: ${{ inputs.clipath }}\\TotalTestFTCLI.bat -data "${{ inputs.workspace }}" -environment "${{ inputs.environment_id}}" -u "${{ inputs.userId }}" -p "${{ secrets.HCI_PASSWORD }}" -s "${{ inputs.repository_server }}" -cesu "${{ inputs.userId }}" -cesp "${{ secrets.HCI_PASSWORD }}" -f "${{ inputs.testFolderPath }}" --runner-jcl "${{inputs.jclFile}}" -R -G -v "6" -l "jenkins" -loglevel "info"
+        run: ${{ inputs.clipath }}\\TotalTestFTCLI.bat -host "${{ inputs.hciconnection }}" -port "${{ inputs.port }}" -u "${{ inputs.userId}}" -p "${{ secrets.HCI_PASSWORD }}" -file "${{ inputs.testFolderPath }}" --runner-jcl "${{inputs.jclFile}}" 
