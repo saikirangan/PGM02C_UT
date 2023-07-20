@@ -1,9 +1,17 @@
-name: workflow_02
-on: [repository_dispatch]
+name: Do anything after the release of the first workflow
+
+on:
+  workflow_run:
+    workflows: ["CI release"]
+    types:
+      - completed
+
 jobs:
-  cypress-run:
+  notify:
     runs-on: self-hosted
+  
     steps:
-      - run: echo Triggering Wokflow 2
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+
+      - name: Do something
+        run: ...
