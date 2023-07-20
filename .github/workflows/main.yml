@@ -1,16 +1,9 @@
-name: Second Workflow
-
-on:
-  repository_dispatch:
-    types:
-      - second-workflow-triggered
-
+name: workflow_02
+on: [repository_dispatch]
 jobs:
-  build:
+  cypress-run:
     runs-on: self-hosted
-
     steps:
-      - name: Checkout code
+      - run: echo "Triggering Wokflow 2"
+      - name: Checkout
         uses: actions/checkout@v2
-
-      # Add your desired steps for the second workflow
