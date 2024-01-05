@@ -28,7 +28,7 @@ jobs:
         uses: bmc-compuware/ispw-sync-local@main
         id: sync
         with:
-          host: 'ispw-host.com'
+          host: '10.10.1.172'
           port: 16196
           uid: ${{ secrets.TSOUSER }}
           pass: ${{ secrets.TSOPASS }}
